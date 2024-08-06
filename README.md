@@ -209,4 +209,6 @@ lines of code) - the quite similar client simple-http
 
 * Currently nothing! libsocket is not actively developed, as it is mostly feature complete, but it
     is actively maintained.
-
+  
+## append
+c和c++ libsocket, tested server/client/ udp/tcp/unix; suggest use libsocket++.so ,bestter error handle.
