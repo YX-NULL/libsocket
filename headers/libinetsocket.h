@@ -57,33 +57,34 @@ extern "C" {
 #endif
 #endif
 
+/*host --> ip地址信息 service --> port端口号*/
 extern int create_inet_stream_socket(const char* host, const char* service,
-                                     char proto_osi3, int flags);
-extern int create_inet_dgram_socket(char proto_osi3, int flags);
+                                     char proto_osi3, int flags);/*创建tcp socket 使用read /write来进行读写数据*/
+extern int create_inet_dgram_socket(char proto_osi3, int flags);/*创建udp socket*/
 extern ssize_t sendto_inet_dgram_socket(int sfd, const void* buf, size_t size,
                                         const char* host, const char* service,
-                                        int sendto_flags);
+                                        int sendto_flags);/*udp send*/
 extern ssize_t recvfrom_inet_dgram_socket(int sfd, void* buffer, size_t size,
                                           char* src_host, size_t src_host_len,
                                           char* src_service,
                                           size_t src_service_len,
-                                          int recvfrom_flags, int numeric);
+                                          int recvfrom_flags, int numeric);/*udp recvform*/
 extern int connect_inet_dgram_socket(int sfd, const char* host,
                                      const char* service);
-extern int destroy_inet_socket(int sfd);
-extern int shutdown_inet_stream_socket(int sfd, int method);
+extern int destroy_inet_socket(int sfd);/*close socket*/
+extern int shutdown_inet_stream_socket(int sfd, int method);/*shut down socket*/
 extern int create_inet_server_socket(const char* bind_addr,
                                      const char* bind_port, char proto_osi4,
-                                     char proto_osi3, int flags);
+                                     char proto_osi3, int flags);/*创建 server tcp/udp根据传递参数*/
 extern int accept_inet_stream_socket(int sfd, char* src_host,
                                      size_t src_host_len, char* src_service,
                                      size_t src_service_len, int flags,
-                                     int accept_flags);
+                                     int accept_flags);/*accept tcp connect*/
 extern int get_address_family(const char* hostname);
 
 #ifdef __linux__
 extern int create_multicast_socket(const char* group, const char* port,
-                                   const char* local);
+                                   const char* local);/*加入udp组播*/
 #endif
 
 #ifdef __cplusplus
